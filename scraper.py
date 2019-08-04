@@ -56,7 +56,7 @@ def scrape_data():
                 f2 = soup.find_all('table', {"class": "b-fight-details__table-text"[1]})
                 
 
-             return None
+            return None
 
 #preprocessing
 # remove rows where DOB is null
