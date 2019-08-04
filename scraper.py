@@ -68,7 +68,7 @@ def scrape_data():
 
 
 
-         return None
+        return None
 
 #preprocessing
 # remove rows where DOB is null
@@ -80,8 +80,8 @@ def create_df():
     df["Event"] = e_name
     df["Date"] = date
     df["Location"] = location
-    df["Figter1"] = f1
-    df["Figter2"] = f2
+    df["Fighter1"] = f1
+    df["Fighter2"] = f2
 
     return df
 
