@@ -29,7 +29,7 @@ def scrape_data():
         soup = BeautifulSoup(data.text, 'html.parser')
 
         table = soup.find('table', {'width': "98%"})
-        links = table.find_all('a', href=True)
+        links = table.find_all(href=True)
 
         for link in links:
             all_links.append("http://ufcstats.com/"+link.get('href'))
