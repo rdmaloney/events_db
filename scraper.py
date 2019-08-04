@@ -39,7 +39,7 @@ def scrape_data():
             h2 = soup.find("h2")
             e_name.append(h2.text)
 
-            box_item = soup.find('ul',{'class': '"b-list__box-list-item"})
+            box_item = soup.find('ul',{'class': "b-list__box-list-item"})
             box_item = box_item.find_all('li')
 
             place = box_item[0].text.strip("Location:").strip()
