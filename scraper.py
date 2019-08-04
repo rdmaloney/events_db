@@ -9,6 +9,15 @@ import sqlite3
 import time
 import os
 
+
+all_links = []
+location = []
+date = []
+e_name = []
+fights = []
+f1 = []
+f2 = []
+
 def scrape_data():
 
         data = requests.get("http://ufcstats.com/statistics/events/upcoming")
