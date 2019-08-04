@@ -7,8 +7,6 @@ import re
 import datetime
 import sqlite3
 import time
-import os
-
 
 all_links = []
 location = []
@@ -17,6 +15,9 @@ e_name = []
 fights = []
 f1 = []
 f2 = []
+
+
+
 
 def scrape_data():
 
@@ -38,11 +39,12 @@ def scrape_data():
             h2 = soup.find("h2")
             e_name.append(h2.text)
 
-            box_item = soup.find("b-list__box-list-item")
+            box_item = soup.find('ul',{'class': '"b-list__box-list-item"})
+            box_item = box_item.find_all('li')
 
-            place = box_item.text.strip("Location:").strip()
+            place = box_item[0].text.strip("Location:").strip()
             place.append(location)
-            d = box_item.text.strip("Date:").strip()
+            d = box_item[1].text.strip("Date:").strip()
             d.append(date)
 
             rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
