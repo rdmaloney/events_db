@@ -51,10 +51,10 @@ def scrape_data():
             for row in rows:
 
                 f1 = soup. find_all ('table', { "class" : "b-fight-details__table-text" [0]})
-                for row in table.findAll("tr")
+                
 
                 f2 = soup.find_all('table', {"class": "b-fight-details__table-text"[1]})
-                for row in table.findAll("tr")
+                
 
              return None
 
