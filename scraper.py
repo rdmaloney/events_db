@@ -27,12 +27,11 @@ def scrape_data():
 
         data = requests.get("http://ufcstats.com/statistics/events/upcoming?page=all")
         soup = BeautifulSoup(data.text, 'html.parser')
-
-        table = soup.find('table', {'width': "98%"})
-        links = table.find_all(href=True)
+        table = soup.find('table', {"class": "b-statistics__table-events"})
+        links = table.find_all('a', href=True)
 
         for link in links:
-            all_links.append("http://ufcstats.com/"+link.get('href'))
+            all_links.append(link.get('href'))
 
         for link in all_links:
             print(f"Now currently scraping link: {link}")
@@ -41,22 +40,35 @@ def scrape_data():
             soup = BeautifulSoup(data.text, 'html.parser')
             time.sleep(1)
 
-            rows = soup.find_all('table', {'cellspacing': "5"})
-
             h2 = soup.find("h2")
+            e_name.append(h2.text)
 
-            e_name.appen(h2.text)
+            box_item = soup.find("b-list__box-list-item")
 
+            place = box_item[0].text
+            d = box_item[1].text
+
+            place.append(location)
+            d.append(date)
+
+            rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
 
             for row in rows:
 
-                f1 = soup. find_all ('table', { "class" : "b-fight-details__table-text" [0]})
-                
+                fights = row.find_all('td', {"class": "b-fight-details__table-col l-page_align_left"})
 
-                f2 = soup.find_all('table', {"class": "b-fight-details__table-text"[1]})
-                
+                fighters = row.find_all('p', {"class": "b-fight-details__table-text"})
 
-            return None
+                fighter1 = fighters[0].text
+                fighter2 = fighters[1].text
+
+                fighter1.append(f1)
+                fighter2.append(f2)
+
+
+
+
+         return None
 
 #preprocessing
 # remove rows where DOB is null
