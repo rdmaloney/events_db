@@ -40,9 +40,9 @@ def scrape_data():
 
             box_item = soup.find("b-list__box-list-item")
 
-            place = box_item[0].text.strip("Location:").strip()
+            place = box_item.text.strip("Location:").strip()
             place.append(location)
-            d = box_item[1].text.strip("Date:").strip()
+            d = box_item.text.strip("Date:").strip()
             d.append(date)
 
             rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
