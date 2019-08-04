@@ -1,28 +1,3 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-import numpy as np
-import string
-import re
-import datetime
-import sqlite3
-import time
-import os
-
-links = []
-alphabets = sorted(set(string.ascii_lowercase))
-
-all_links = []
-location = []
-date = []
-e_name = []
-fights = []
-f1 = []
-f2 = []
-
-
-
-
 def scrape_data():
 
         data = requests.get("http://ufcstats.com/statistics/events/upcoming?page=all")
@@ -45,10 +20,9 @@ def scrape_data():
 
             box_item = soup.find("b-list__box-list-item")
 
-            place = box_item[0].text
-            d = box_item[1].text
-
+            place = box_item[0].text.strip("Location:").strip()
             place.append(location)
+            d = box_item[1].text.strip("Date:").strip()
             d.append(date)
 
             rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
@@ -59,10 +33,9 @@ def scrape_data():
 
                 fighters = row.find_all('p', {"class": "b-fight-details__table-text"})
 
-                fighter1 = fighters[0].text
-                fighter2 = fighters[1].text
-
+                fighter1 = fighters[0].text.strip()
                 fighter1.append(f1)
+                fighter2 = fighters[1].text.strip()
                 fighter2.append(f2)
 
 
