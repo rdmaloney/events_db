@@ -1,6 +1,6 @@
 def scrape_data():
 
-        data = requests.get("http://ufcstats.com/statistics/events/upcoming?page=all")
+        data = requests.get("http://ufcstats.com/statistics/events/upcoming")
         soup = BeautifulSoup(data.text, 'html.parser')
         table = soup.find('table', {"class": "b-statistics__table-events"})
         links = table.find_all('a', href=True)
