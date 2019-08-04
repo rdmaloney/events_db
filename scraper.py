@@ -24,54 +24,39 @@ f2 = []
 
 
 def scrape_data():
-    for alpha in alphabets:
-        links.append("http://ufcstats.com/statistics/events/upcoming" + alpha + "&page=all")
 
-        # now that we have a list of links we need to iterate it with BeautifulSoup
-    for link in links:
-        print(f"Currently on this link: {link}")
-
-        data = requests.get(link)
+        data = requests.get("http://ufcstats.com/statistics/events/upcoming?page=all")
         soup = BeautifulSoup(data.text, 'html.parser')
-        names = soup.find_all('a', {'class': 'b-link b-link_style_black'}, href=True)
 
+        table = soup.find('table', {'width': "98%"})
+        links = table.find_all('a', href=True)
 
+        for link in links:
+            all_links.append("http://ufcstats.com/"+link.get('href'))
 
-        # list to store url page of events
-        events = []
+        for link in all_links:
+            print(f"Now currently scraping link: {link}")
 
-        for name in names:
-            events.append(name['href'])
-
-        events = sorted(set(events))
-
-        for event in events:
-            data = requests.get(event)
+            data = requests.get(link)
             soup = BeautifulSoup(data.text, 'html.parser')
-            time.sleep(2)
+            time.sleep(1)
 
-            #event name
-            n = soup.find('span', {'class': 'b-content__title-highlight'})
-            e_name.append(n.text.strip())
-            print(f"Scraping the following event: {n.text.strip()}")
+            rows = soup.find_all('table', {'cellspacing': "5"})
 
-            # event info box
-            event_info = soup.find ('ul', {'class': 'b-list_box-list'})
-            event_info = event_info.find_all('li')
+            h2 = soup.find("h2")
 
-            #event info- Date
-            date = event_info[0].text.strip().strip("Date:").strip()
+            e_name.appen(h2.text)
 
-            # event info- Location
-            location = event_info[1].text.strip().strip("Location:").strip()
 
-            fights = soup.find('span', {'class': 'b-fight-details_table-col l-page_align_left'})
+            for row in rows:
 
-            f1 = soup.find('span', {'class': 'b-fight-details_table-text'[0]})
+                f1 = soup. find_all ('table', { "class" : "b-fight-details__table-text" [0]})
+                for row in table.findAll("tr")
 
-            f2 = soup.find('span', {'class': 'b-fight-details_table-text'[1]})
+                f2 = soup.find_all('table', {"class": "b-fight-details__table-text"[1]})
+                for row in table.findAll("tr")
 
-    return None
+             return None
 
 #preprocessing
 # remove rows where DOB is null
@@ -106,5 +91,6 @@ conn = sqlite3.connect('data.sqlite')
 df.to_sql('data', conn, if_exists='replace')
 print('Db successfully constructed and saved')
 conn.close()
+
 
 
