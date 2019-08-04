@@ -1,3 +1,21 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import numpy as np
+import string
+import re
+import datetime
+import sqlite3
+import time
+
+all_links = []
+location = []
+date = []
+e_name = []
+fights = []
+f1 = []
+f2 = []
+
 def scrape_data():
 
         data = requests.get("http://ufcstats.com/statistics/events/upcoming")
