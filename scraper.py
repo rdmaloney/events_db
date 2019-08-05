@@ -52,14 +52,11 @@ def scrape_data():
 
             for row in rows:
 
-                fights = row.find_all('td', {"class": "b-fight-details__table-col l-page_align_left"})
+                fighters = row.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
-                fighters = row.find_all('p', {"class": "b-fight-details__table-text"})
+                f1.append(fighters[0].text)
+                f2.append(fighters[1].text)
 
-                fighter1 = fighters[0].text.strip()
-                fighter1.append(f1)
-                fighter2 = fighters[1].text.strip()
-                fighter2.append(f2)
 
 
 
