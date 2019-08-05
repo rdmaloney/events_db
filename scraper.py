@@ -16,6 +16,9 @@ fights = []
 f1 = []
 f2 = []
 
+
+
+
 def scrape_data():
 
         data = requests.get("http://ufcstats.com/statistics/events/upcoming")
@@ -40,10 +43,10 @@ def scrape_data():
             box_item = box_item.find_all('li')
 
             place = box_item[0].text.strip().strip("Location:").strip()
-            place.append(location)
+            location.append(place)
 
-            d = box_item[1].text.strip().strip("Date:").strip()
-            d.append(date)
+            d = box_item[1].text.strip("Date:")
+            date.append(d)
 
             rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
 
