@@ -60,7 +60,8 @@ def scrape_data():
                     f1.append(fighters[0].text)
                     f2.append(fighters[1].text)
                 except IndexError:
-                    pass
+                    f1.append("null")
+                    f2.append("null")
                 continue
 
 
@@ -99,6 +100,3 @@ conn = sqlite3.connect('data.sqlite')
 df.to_sql('data', conn, if_exists='replace')
 print('Db successfully constructed and saved')
 conn.close()
-
-
-
