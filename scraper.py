@@ -54,6 +54,10 @@ def scrape_data():
 
                 fighters = row.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
+                if fighters is not None and len(fighters) > 0:
+                    f1.append("null")
+                    f2.append("null")
+
                 f1.append(fighters[0].text)
                 f2.append(fighters[1].text)
 
@@ -96,6 +100,3 @@ conn = sqlite3.connect('data.sqlite')
 df.to_sql('data', conn, if_exists='replace')
 print('Db successfully constructed and saved')
 conn.close()
-
-
-
