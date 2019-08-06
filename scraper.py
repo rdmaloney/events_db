@@ -52,7 +52,7 @@ def scrape_data():
 
             for tables in table:
 
-                rows = table.find('tr', {"class": "b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click"})
+                rows = table.find_all('tr', {"class": "b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click"})
 
                 for row in rows:
 
