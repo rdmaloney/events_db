@@ -48,12 +48,12 @@ def scrape_data():
             d = box_item[1].text.strip("Date:")
             date.append(d)
 
-            table = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
+            rows = soup.find_all('table', {"class": "b-fight-details__table b-fight-details__table_style_margin-top b-fight-details__table_type_event-details js-fight-table"})
 
-            for tables in table:
+            for row in rows:
 
-                
-                    fighters = table.find('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
+
+                    fighters = rows.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
                     try:
                         f1.append(fighters[0].text)
@@ -99,6 +99,3 @@ conn = sqlite3.connect('data.sqlite')
 df.to_sql('data', conn, if_exists='replace')
 print('Db successfully constructed and saved')
 conn.close()
-
-
-
