@@ -37,7 +37,7 @@ def scrape_data():
             time.sleep(1)
 
             h2 = soup.find("h2")
-            e_name.append(h2.text)
+            e_name.append(h2.text.strip())
 
             box_item = soup.find('ul',{'class': "b-list__box-list"})
             box_item = box_item.find_all('li')
