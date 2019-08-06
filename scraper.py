@@ -56,8 +56,8 @@ def scrape_data():
                     fighters = row.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
                     try:
-                        f1.append(fighters[0].text)
-                        f2.append(fighters[1].text)
+                        f1.append(fighters[0].text.strip())
+                        f2.append(fighters[1].text.strip())
                     except IndexError:
                         f1.append("null")
                         f2.append("null")
