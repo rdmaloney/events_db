@@ -83,7 +83,6 @@ def create_df():
 
 scrape_data()
 df = create_df()
-df = preprocessing(df)
 print("Scraping completed")
 
 conn = sqlite3.connect('data.sqlite')
