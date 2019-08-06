@@ -52,11 +52,8 @@ def scrape_data():
 
             for tables in table:
 
-                rows = table.find_all('tr', {"class": "b-fight-details__table-row b-fight-details__table-row__hover js-fight-details-click"})
-
-                for row in rows:
-
-                    fighters = rows.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
+                
+                    fighters = table.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
                     try:
                         f1.append(fighters[0].text)
