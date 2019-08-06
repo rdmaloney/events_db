@@ -81,15 +81,6 @@ def create_df():
 
     return df
 
-
-def preprocessing(df):
-    # identifying NaNs
-    df = df.replace('--', np.nan)
-    df = df.replace('', np.nan)
-
-    return df
-
-
 scrape_data()
 df = create_df()
 df = preprocessing(df)
