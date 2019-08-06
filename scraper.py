@@ -53,7 +53,7 @@ def scrape_data():
             for row in rows:
 
 
-                    fighters = rows.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
+                    fighters = row.find_all('a', {"href": re.compile("http://ufcstats.com/fighter-details")})
 
                     try:
                         f1.append(fighters[0].text)
